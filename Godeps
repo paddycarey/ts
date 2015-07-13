@@ -1,7 +1,7 @@
 # general dependencies
-github.com/docker/docker            29265448ecaf7721b24cbc64978bc7e2adbc4c08
-github.com/fsouza/go-dockerclient   55e75745398964e5b4fed4dec921143e5300b89e
+github.com/docker/docker/pkg/fileutils 29265448ecaf7721b24cbc64978bc7e2adbc4c08
+github.com/fsouza/go-dockerclient      55e75745398964e5b4fed4dec921143e5300b89e
 
 # test-only dependencies
-github.com/garyburd/redigo/redis    8b1d80a45a732e6d95e22dcc2e067312c664936c
-github.com/influxdb/influxdb/client 8b67872d6bd1013d455e3b12af3e79b24d78bf0d
+github.com/garyburd/redigo/redis       8b1d80a45a732e6d95e22dcc2e067312c664936c
+github.com/influxdb/influxdb/client    8b67872d6bd1013d455e3b12af3e79b24d78bf0d
