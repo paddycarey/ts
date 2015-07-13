@@ -36,7 +36,7 @@ func NewRedis() (Store, error) {
 	// watch the container's log until redis indicates that it's ready to
 	// accept connections
 	msg := "ready to accept connections"
-	found, err := dc.watchForStringInLogs(c, msg, time.Second*10)
+	found, err := dc.watchForStringInLogs(c, msg, time.Second*30)
 	if err != nil {
 		return nil, err
 	}

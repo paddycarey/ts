@@ -32,7 +32,7 @@ func NewInfluxDB() (Store, error) {
 		return nil, err
 	}
 
-	found, err := dc.watchForStringInLogs(c, "Creating database", time.Second*10)
+	found, err := dc.watchForStringInLogs(c, "Creating database", time.Second*30)
 	if err != nil {
 		return nil, err
 	}
