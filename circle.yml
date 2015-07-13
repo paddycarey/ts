@@ -1,0 +1,27 @@
+machine:
+  services:
+    - docker
+  python:
+    version: 2.7.9
+
+checkout:
+  post:
+    - rm -rf ~/.go_workspace/src/github.com/paddycarey
+    - mkdir -p ~/.go_workspace/src/github.com/paddycarey
+    - cp -R ~/ts ~/.go_workspace/src/github.com/paddycarey/ts
+
+dependencies:
+  override:
+    - go get -v github.com/golang/lint/golint
+    - go get -v golang.org/x/tools/cmd/vet
+    - "wget https://raw.githubusercontent.com/pote/gpm/v1.3.2/bin/gpm && chmod +x gpm && sudo mv gpm /usr/local/bin"
+    - gpm install
+
+test:
+  override:
+    - golint ./...
+    - go vet ./...
+    - |
+      formatted="$(go fmt ./...)" && \
+      ( ( [[ -n $formatted ]] && echo "gofmt failed on the following files:" && echo -ne $formatted && exit 1) || (( [[ -z $formatted ]] && echo "gofmt passed")  ) )
+    - go test -v ./... -race
