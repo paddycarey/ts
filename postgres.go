@@ -38,8 +38,13 @@ func NewPostgres() (Store, error) {
 
 	// watch the container's log until postgres indicates that it's ready to
 	// accept connections
-	msg := "ready to accept connections"
+	msg := "PostgreSQL init process complete; ready for start up."
 	found, err := dc.watchForStringInLogs(c, msg, time.Second*30)
+	if err != nil {
+		return nil, err
+	}
+	msg = "ready to accept connections"
+	found, err = dc.watchForStringInLogs(c, msg, time.Second*30)
 	if err != nil {
 		return nil, err
 	}
