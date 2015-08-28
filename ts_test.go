@@ -2,6 +2,7 @@ package ts
 
 import (
 	"testing"
+	"time"
 )
 
 // validator is a function type used by tests to verify that a given storage
@@ -26,6 +27,10 @@ func testStore(t *testing.T, ns newStore, v validator) {
 		return
 	}
 	defer store.Shutdown()
+
+	// temporary hack until i have a better method of waiting for postgres to
+	// start up. This should be removed at the earliest opportunity.
+	time.Sleep(time.Second * time.Duration(3))
 
 	err = v(store)
 	if err != nil {
